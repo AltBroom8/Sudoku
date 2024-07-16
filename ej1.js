@@ -1,7 +1,4 @@
-/*Input: nums = [2,0,2,1,1,0]
-Output: [0,0,1,1,2,2]*/
-
-
+//Declaramos los arrays
 let nums = [2,0,2,1,1,0];
 let nuevo = [];
 let cosa = nums.length;
@@ -18,5 +15,5 @@ for (let i=0;i<cosa;i++){
     nuevo.push(num)
     nums.splice(pos,1)
 }
-
+//Imprimimos el resultado
 console.log(nuevo);
