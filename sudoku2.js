@@ -92,7 +92,7 @@ const board = [
   
 ];
 
-// Resuelve el Sudoku y imprime el tablero resuelto
+// Resuelve el Sudoku y imprime los cambios
 if (solveSudoku(board)) {
   console.log("Sudoku resuelto:");
   printBoard(board);
