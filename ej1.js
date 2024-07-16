@@ -17,3 +17,7 @@ for (let i=0;i<cosa;i++){
 }
 //Imprimimos el resultado
 console.log(nuevo);
+//Reemplazamos en el nuevo array
+for (let i = 0; i < nums.length; i++) {
+    nums[i] = nuevo[i];
+}
