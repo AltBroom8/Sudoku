@@ -1,6 +1,6 @@
 const SIZE = 9;
 const UNASSIGNED = 0;
-
+let board = [];
 // Función para encontrar una celda vacía en el tablero
 function findUnassignedLocation(board) {
   for (let row = 0; row < SIZE; row++) {
@@ -74,28 +74,19 @@ function printBoard(board) {
     for (let col = 0; col < SIZE; col++) {
       line += board[row][col] + " ";
     }
-    console.log(line);
   }
 }
 
-// Tablero de Sudoku de ejemplo (0 representa una celda vacía)
-const board = [
-  [0, 0, 1, 0, 0, 5, 0, 0, 0],
-  [0, 0, 0, 6, 0, 0, 0, 0, 0],
-  [0, 6, 4, 0, 0, 0, 3, 0, 2],
-  [0, 3, 6, 1, 0, 0, 9, 7, 0],
-  [0, 1, 5, 4, 0, 0, 0, 0, 0],
-  [0, 0, 0, 3, 0, 0, 0, 0, 8],
-  [0, 0, 2, 0, 0, 6, 0, 0, 0],
-  [4, 9, 0, 0, 0, 0, 0, 0, 6],
-  [0, 0, 0, 0, 0, 7, 5, 0, 0]
-  
-];
-
-// Resuelve el Sudoku y imprime los cambios
-if (solveSudoku(board)) {
-  console.log("Sudoku resuelto:");
-  printBoard(board);
-} else {
-  console.log("No se puede resolver el Sudoku");
+function solucion(tablero){
+  // Resuelve el Sudoku y imprime los cambios
+  if (solveSudoku(tablero)) {
+    board = tablero
+    console.log("Sudoku resuelto:");
+    printBoard(board);
+    return board;
+  } else {
+    console.log("No se puede resolver el Sudoku");
+    return null;
+  }
 }
+

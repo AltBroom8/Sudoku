@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku Solver!</title>
     <link rel="stylesheet" href="css/prueba.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     
 </head>
 <body>
@@ -273,7 +274,12 @@
             </div>
         </div>
     </div>
-    <button>Solve!</button>
+    <div id="btns">
+        <button id="clear" class="btn btn-danger btn-lg mt-3 mr-4">Clear</button>
+        <button id="solver" class="btn btn-primary btn-lg mt-3">Solve!</button>
+    </div>
+    
     <script src="js/sudoku.js"></script>
+    <script src="js/logica.js"></script>
 </body>
 </html>
