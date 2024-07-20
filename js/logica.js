@@ -43,7 +43,7 @@ function isSafe(board, row, col, num) {
   return true;
 }
 
-// Función principal para resolver el Sudoku utilizando backtracking
+// Función principal para resolver el Sudoku 
 function solveSudoku(board) {
   const unassignedLocation = findUnassignedLocation(board);
   if (!unassignedLocation) {
@@ -76,16 +76,53 @@ function printBoard(board) {
     }
   }
 }
+function isValidSudoku(board) {
+  // Verificar filas y columnas
+  for (let i = 0; i < SIZE; i++) {
+    let rowSet = new Set();
+    let colSet = new Set();
+    for (let j = 0; j < SIZE; j++) {
+      if (board[i][j] !== UNASSIGNED) {
+        if (rowSet.has(board[i][j])) return false;
+        rowSet.add(board[i][j]);
+      }
+      if (board[j][i] !== UNASSIGNED) {
+        if (colSet.has(board[j][i])) return false;
+        colSet.add(board[j][i]);
+      }
+    }
+  }
 
-function solucion(tablero){
+  // Verificar subcuadrículas 3x3
+  for (let row = 0; row < SIZE; row += 3) {
+    for (let col = 0; col < SIZE; col += 3) {
+      let boxSet = new Set();
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          let current = board[row + i][col + j];
+          if (current !== UNASSIGNED) {
+            if (boxSet.has(current)) return false;
+            boxSet.add(current);
+          }
+        }
+      }
+    }
+  }
+
+  return true;
+}
+
+function solucion(tablero) {
+  console.log('Entra en solucion');
+  // Validar Sudoku antes de intentar resolverlo
+  if (!isValidSudoku(tablero)) {
+    return null;
+  }
   // Resuelve el Sudoku y imprime los cambios
   if (solveSudoku(tablero)) {
-    board = tablero
-    console.log("Sudoku resuelto:");
-    printBoard(board);
-    return board;
+    printBoard(tablero);
+    return tablero;
   } else {
-    console.log("No se puede resolver el Sudoku");
     return null;
   }
 }

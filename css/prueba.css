@@ -66,3 +66,7 @@ button{
 button:hover{
     background-color: rgb(87, 205, 87);
 }
+
+#mensaje-sudoku-no-valido{
+    color:rgb(169, 46, 46)
+}

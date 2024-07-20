@@ -72,9 +72,20 @@ function setMatrix(){
     }
 }
 
+function clearMsg(){
+    let mensajeExistente = document.querySelector('h3#mensaje-sudoku-no-valido');
+    if (mensajeExistente) {
+        mensajeExistente.remove();
+      }
+}
+
 let solveBtn = document.getElementById('solver')
-solveBtn.addEventListener('click',()=>{
+solveBtn.addEventListener('click', () => {
+    clearMsg()
+    console.log('Antes de actualizaMatrix');
     actualizaMatrix();
+    console.log('Después de actualizaMatrix', matrix);
+
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
             let celda = matrix[i][j];
@@ -83,10 +94,39 @@ solveBtn.addEventListener('click',()=>{
             }
         }
     }
-    console.log(matrix);
-    matrix = solucion(matrix);
-    if (matrix!== null){
-        setMatrix();
+    console.log('Matriz convertida a números:', matrix);
+
+    
+    try {
+        console.log('Antes de llamar a solucion');
+        matrix = solucion(matrix);
+        console.log('Resultado de solucion:', matrix);
+    } catch (error) {
+        console.error('Error al llamar a solucion:', error);
+        matrix = null;
     }
-    console.log(matrix);
+
+    if (matrix !== null) {
+        console.log('Sudoku solucionado');
+        setMatrix();
+    } else {
+        console.log('Sudoku no solucionable');
+        
+        let mensajeExistente = document.querySelector('h3#mensaje-sudoku-no-valido');
+        if (!mensajeExistente) {
+            var mensaje = document.createElement('h3');
+            mensaje.id = 'mensaje-sudoku-no-valido';
+            mensaje.textContent = 'You cannot solve this sudoku.';
+            document.body.appendChild(mensaje);
+        }
+    }
+    console.log('Fin del evento');
+});
+
+let clear = document.getElementById('clear');
+clear.addEventListener('click',()=>{
+    clearMsg();
+    const inputs = document.querySelectorAll('input');
+  inputs.forEach(input => input.value = '');
+
 })
